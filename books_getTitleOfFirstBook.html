@@ -13,27 +13,30 @@
 		}else{ 
 			xhttp = new ActiveXObject("Microsoft.XMLHTTP");
 		}
-		xhttp.open("GET", dname, false);
-		xhttp.send(null);
+		xhttp.open("GET",dname,false);
+		xhttp.send("");
 		return xhttp.responseXML;
-	}
+	}	
 
 	xml = loadXMLDoc("books.xml");
-	path = "/bookstore/book[1]/title";
+	path = "/bookstore/book[1]/title"
 	if(window.ActiveXObject){ 
 		var nodes = xml.selectNodes(path);
-		for(var i = 0 ; i < nodes.length ; i++){ 
+		for(i = 0 ; i < nodes.length ; i ++){ 
 			document.write(nodes[i].childNodes[0].nodeValue);
-			document.write("<br />");
+			document.write("<br />")
 		}
+		
 	}else if(document.implementation && document.implementation.createDocument){ 
-		var nodes = xml.evaluate(path, xml, null, XPathResult.ANY_TYPE,null);
+		var nodes = xml.evaluate(path,xml,null,XPathResult.ANY_TYPE,null);
 		var result = nodes.iterateNext();
-		while(result){ 
+		while (result){ 
+			document.write(result.childNodes[0].nodeValue);
 			document.write("<br />");
 			result = nodes.iterateNext();
 		}
-	}	
+	}
 </script>
+
 </body>
 </html>
